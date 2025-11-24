@@ -1,18 +1,35 @@
-openpyxl
+# Requirements pour Data Tool
+# Versions compatibles et testées
+
+# Core
 streamlit==1.30.0
 pandas==2.1.1
-numpy==2.3.2
-scikit-learn==1.7.1
+numpy==1.24.3
+openpyxl==3.1.2
+
+# Machine Learning
+scikit-learn==1.3.2
+xgboost==2.0.3
+lightgbm==4.1.0
+
+# Visualisation
 matplotlib==3.8.0
 seaborn==0.12.3
-joblib==1.5.2
-statsmodels==0.18.1
 
-numba==0.57.0
+# Profiling et analyse
+ydata-profiling==4.5.1
+streamlit-pandas-profiling==0.0.4
 phik==0.12.4
 visions==0.7.6
-ydata-profiling
-streamlit-pandas-profiling==0.0.4
-jinja2>=3.1.2
-xgboost>=1.7.6
-lightgbm>=4.4.0
+
+# Statistiques
+statsmodels==0.14.0
+scipy==1.11.4
+
+# Utilitaires
+joblib==1.3.2
+jinja2==3.1.2
+xlsxwriter==3.1.9
+
+# Performance (optionnel)
+numba==0.57.0
