@@ -1,25 +1,9 @@
-# modules/__init__.py
+# modules/utils/__init__.py
 """
-Data Tool - Modules principaux
-Outil d'analyse de données et de modélisation ML
+Utilitaires pour Data Tool
 """
 
-__version__ = "1.0.0"
-__author__ = "Data Tool Team"
+from . import helpers
+from . import metrics
 
-# Imports pour faciliter l'accès aux modules
-from . import data_loader
-from . import eda
-from . import preprocessing
-from . import modeling
-from . import evaluation
-from . import reporting
-
-__all__ = [
-    "data_loader",
-    "eda",
-    "preprocessing",
-    "modeling",
-    "evaluation",
-    "reporting"
-]
+__all__ = ["helpers", "metrics"]
