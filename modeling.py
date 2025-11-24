@@ -11,7 +11,7 @@ from sklearn.impute import SimpleImputer
 import joblib
 from typing import Tuple, Any
 import helpers
-from metrics import classification_metrics, regression_metrics
+import metrics
 from math import isfinite
 
 def _format_metrics(d: dict, decimals=3):
@@ -115,11 +115,11 @@ def run_modeling(df: pd.DataFrame) -> dict:
 
         # Évaluation (metrics utilitaires)
         if task == "classification":
-            metrics = classification_metrics(y_test, preds)
+            metrics_result = metrics.classification_metrics(y_test, preds)
         else:
-            metrics = regression_metrics(y_test, preds)
+            metrics_result = metrics.regression_metrics(y_test, preds)
 
-        metrics_display = _format_metrics(metrics, decimals=4)
+        metrics_display = _format_metrics(metrics_result, decimals=4)
         st.write("📊 **Metrics (test)** :")
         st.json(metrics_display)
 

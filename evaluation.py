@@ -7,7 +7,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-from metrics import classification_metrics, regression_metrics
+import metrics
 from sklearn.metrics import confusion_matrix, roc_curve, auc, precision_recall_curve
 import scipy.stats as stats
 from sklearn.preprocessing import LabelEncoder
@@ -22,8 +22,8 @@ def run_evaluation(model, X_test, y_test):
 
     if is_classification:
         st.write("Classification — métriques :")
-        metrics = classification_metrics(y_test, preds)
-        metrics_df = pd.DataFrame([metrics])
+        metrics_result = metrics.classification_metrics(y_test, preds)
+        metrics_df = pd.DataFrame([metrics_result])
         st.dataframe(metrics_df)
         st.session_state["evaluation_metrics"] = metrics_df
         st.session_state["y_pred"] = preds
@@ -72,8 +72,8 @@ def run_evaluation(model, X_test, y_test):
 
     else:
         st.write("Régression — métriques :")
-        metrics = regression_metrics(y_test, preds)
-        metrics_df = pd.DataFrame([metrics])
+        metrics_result = metrics.regression_metrics(y_test, preds)
+        metrics_df = pd.DataFrame([metrics_result])
         st.dataframe(metrics_df)
         st.session_state["evaluation_metrics"] = metrics_df
         st.session_state["y_pred"] = preds
