@@ -37,8 +37,12 @@ p, span, label, div { color: #FFFFFF !important; font-family: 'Segoe UI', sans-s
 .stButton>button { background-color: #FFD700; color: #1E3A5F; border-radius: 10px; padding: 10px 20px; border: none; font-weight: bold; }
 .stButton>button:hover { background-color: #FFA500; color: white; }
 
-[data-testid="stFileUploader"] { background-color: #FFD700 !important; border-radius: 10px; padding: 10px; }
-[data-testid="stFileUploader"] label { color: #1E3A5F !important; font-weight: bold; }
+[data-testid="stFileUploader"] { background-color: #1a1a1a !important; border-radius: 10px; padding: 10px; border: 2px solid #FFD700; }
+[data-testid="stFileUploader"] label { color: #FFD700 !important; font-weight: bold; }
+[data-testid="stFileUploader"] section { background-color: #1a1a1a !important; }
+[data-testid="stFileUploader"] section > div { background-color: #1a1a1a !important; color: #FFFFFF !important; }
+[data-testid="stFileUploader"] small { color: #FFFFFF !important; }
+[data-testid="stFileUploader"] button { background-color: #34495E !important; color: #FFFFFF !important; border: 1px solid #FFD700 !important; }
 
 div[role="radiogroup"] > label, .stSelectbox { background: #34495E !important; color: yellow !important; padding: 8px 15px; border-radius: 8px; margin: 3px 0; cursor: pointer; }
 div[role="radiogroup"] > label:hover { background: #1ABC9C !important; }
