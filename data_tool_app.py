@@ -20,24 +20,10 @@ st.markdown("""
 <style>
 
 /********* HEADER *********/
-.custom-header { 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 60px; 
-    background-color: #1E3A5F; 
-    color: white; 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
-    padding: 0 40px; 
-    z-index: 9999; 
-    box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
-}
+.custom-header { position: fixed; top: 0; left: 0; width: 100%; height: 60px; background-color: #1E3A5F; color: white; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 9999; box-shadow: 0px 2px 5px rgba(0,0,0,0.3);}
 .custom-header .logo { font-size: 22px; font-weight: bold; color: #FFD700; }
 .custom-header .menu { display: flex; gap: 20px; }
-.custom-header .menu a { color: white; text-decoration: none; font-weight: 500; font-family: 'Segoe UI'; transition: color 0.3s; }
+.custom-header .menu a { color: white; text-decoration: none; font-weight: 500; font-family: 'Segoe UI', sans-serif; transition: color 0.3s;}
 .custom-header .menu a:hover { color: #FFD700; }
 
 .block-container { padding-top: 80px !important; }
@@ -45,15 +31,16 @@ st.markdown("""
 .block-container, .st-emotion-cache-18e3th9, .st-emotion-cache-1y4p8pa { background-color: transparent !important; }
 
 /********* TITRES *********/
-h1, h2, h3, h4 { color: #FFD700; font-family: 'Segoe UI'; }
+h1, h2, h3, h4 { color: #FFD700; font-family: 'Segoe UI', sans-serif; }
 
-/********* TEXTE GLOBAL *********/
+/********* TEXTE GLOBAL (VERSION FIXÉE !) *********/
+/* On exclut les éléments critiques utilisés par Streamlit */
 .block-container p,
 .block-container span,
 .block-container label,
 .block-container div:not([data-testid="stFileUploader"]):not(.stSelectbox):not([role="radiogroup"]) {
     color: #FFFFFF !important;
-    font-family: 'Segoe UI';
+    font-family: 'Segoe UI', sans-serif;
 }
 
 /********* SIDEBAR *********/
@@ -61,35 +48,27 @@ h1, h2, h3, h4 { color: #FFD700; font-family: 'Segoe UI'; }
 [data-testid="stSidebar"] h1, h2, h3, label { color: yellow !important; }
 
 /********* BOUTONS *********/
-.stButton>button { 
-    background-color: #FFD700; 
-    color: #1E3A5F; 
-    border-radius: 10px; 
-    padding: 10px 20px; 
-    border: none; 
-    font-weight: bold; 
-}
-.stButton>button:hover { 
-    background-color: #FFA500; 
-    color: white; 
-}
+.stButton>button { background-color: #FFD700; color: #1E3A5F; border-radius: 10px; padding: 10px 20px; border: none; font-weight: bold; }
+.stButton>button:hover { background-color: #FFA500; color: white; }
 
-/********* FILE UPLOADER *********/
+/********* FILE UPLOADER (fix complet) *********/
 [data-testid="stFileUploader"] {
     background-color: #FFD700 !important;
     border-radius: 10px;
     padding: 10px;
 }
+
 [data-testid="stFileUploader"] * {
     color: #1E3A5F !important;
     font-weight: 600;
 }
+
 [data-testid="stFileUploaderDropzone"] {
     background-color: #FFF6BF !important;
     border: 2px dashed #1E3A5F !important;
 }
 
-/********* RADIO + SELECTBOX *********/
+/********* RADIO + SELECTBOX (fix complet) *********/
 div[role="radiogroup"] label {
     background: #34495E !important;
     color: yellow !important;
@@ -98,66 +77,14 @@ div[role="radiogroup"] label {
     margin: 3px 0;
     cursor: pointer;
 }
+
 div[role="radiogroup"] label:hover {
     background: #1ABC9C !important;
 }
+
 .stSelectbox * {
     background-color: #34495E !important;
     color: yellow !important;
-}
-
-
-/****************************************************************/
-/*** FIX AFFICHAGE : METRICS, MODELES, PIPELINE, TABLES, ETC. ***/
-/****************************************************************/
-
-/* Conteneurs d’output souvent invisibles */
-.stMarkdown, .stText, .stAlert, .stDataFrame, .stJson, .stException {
-    color: white !important;
-}
-
-/* Zones affichant les dictionnaires, résultats de modèle, pipelines */
-div[data-testid="stMarkdownContainer"],
-div[data-testid="stText"],
-div[data-testid="stCodeBlock"],
-div[data-testid="stJson"] {
-    background-color: #0F1E33 !important;
-    color: white !important;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #1E4E80 !important;
-}
-
-/* Fix pour les collapses/expanders illisibles */
-details, summary {
-    background-color: #14355C !important;
-    color: white !important;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #1E4E80 !important;
-}
-summary:hover {
-    background-color: #1A4C7A !important;
-}
-
-/* Fix spécifique pour les zones "Metrics (test)" et pipeline */
-div[class*="st-emotion-cache"][class*="element-container"] pre,
-div[class*="st-emotion-cache"] pre {
-    background-color: #0F1E33 !important;
-    color: #FFFFFF !important;
-    border-radius: 10px;
-    padding: 12px;
-    border: 1px solid #1E4E80 !important;
-}
-
-/* Fix DataFrames */
-.stDataFrame table {
-    background-color: #0F1E33 !important;
-    color: white !important;
-}
-.stDataFrame th, .stDataFrame td {
-    color: white !important;
-    border-color: #1E4E80 !important;
 }
 
 </style>
