@@ -6,9 +6,23 @@ import os
 
 # Ajouter le dossier modules au path pour Streamlit Cloud
 current_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, current_dir)
+modules_path = os.path.join(current_dir, 'modules')
+if modules_path not in sys.path:
+    sys.path.insert(0, modules_path)
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
 
-from modules import data_loader, eda, preprocessing, modeling, evaluation, reporting
+# Imports des modules
+try:
+    import data_loader, eda, preprocessing, modeling, evaluation, reporting
+except ImportError as e:
+    st.error(f"❌ Erreur d'import des modules: {e}")
+    st.info("Structure du répertoire:")
+    st.code(f"Current dir: {current_dir}\nFiles: {os.listdir(current_dir)}")
+    if os.path.exists(modules_path):
+        st.code(f"Modules dir: {os.listdir(modules_path)}")
+    st.stop()
+
 from sklearn.model_selection import train_test_split
 
 # ------------------------
