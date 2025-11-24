@@ -18,32 +18,50 @@ st.set_page_config(
 # ------------------------
 st.markdown("""
 <style>
+
+/********* HEADER *********/
 .custom-header { position: fixed; top: 0; left: 0; width: 100%; height: 60px; background-color: #1E3A5F; color: white; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 9999; box-shadow: 0px 2px 5px rgba(0,0,0,0.3);}
 .custom-header .logo { font-size: 22px; font-weight: bold; color: #FFD700; }
-.custom-header .menu { display: flex; gap: 20px; }
-.custom-header .menu a { color: white; text-decoration: none; font-weight: 500; font-family: 'Segoe UI', sans-serif; transition: color 0.3s;}
+.custom-header .menu a { color: white; text-decoration: none; }
 .custom-header .menu a:hover { color: #FFD700; }
 
 .block-container { padding-top: 80px !important; }
 .stApp { background-color: #1E3A5F; }
-.block-container, .st-emotion-cache-18e3th9, .st-emotion-cache-1y4p8pa { background-color: transparent !important; }
 
-h1, h2, h3, h4 { color: #FFD700; font-family: 'Segoe UI', sans-serif; }
-p, span, label, div { color: #FFFFFF !important; font-family: 'Segoe UI', sans-serif; }
+/********* TEXTE GLOBAL (SANS casser Streamlit) *********/
+.block-container p,
+.block-container span,
+.block-container label,
+.block-container div:not([data-testid="stFileUploader"]) * {
+    color: #FFFFFF !important;
+}
 
-[data-testid="stSidebar"] { background-color: #1569C7 !important; color: yellow !important; }
-[data-testid="stSidebar"] h1, h2, h3, label { color: yellow !important; }
+/********* SIDEBAR *********/
+[data-testid="stSidebar"] { background-color: #1569C7 !important; }
+[data-testid="stSidebar"] * { color: yellow !important; }
 
-.stButton>button { background-color: #FFD700; color: #1E3A5F; border-radius: 10px; padding: 10px 20px; border: none; font-weight: bold; }
-.stButton>button:hover { background-color: #FFA500; color: white; }
+/********* BOUTONS *********/
+.stButton>button { background-color: #FFD700; color: #1E3A5F; }
 
-[data-testid="stFileUploader"] { background-color: #FFD700 !important; border-radius: 10px; padding: 10px; }
-[data-testid="stFileUploader"] label { color: #1E3A5F !important; font-weight: bold; }
+/********* FILE UPLOADER *********/
+[data-testid="stFileUploader"] {
+    background-color: #FFD700 !important;
+    border-radius: 12px;
+    padding: 15px;
+}
 
-div[role="radiogroup"] > label, .stSelectbox { background: #34495E !important; color: yellow !important; padding: 8px 15px; border-radius: 8px; margin: 3px 0; cursor: pointer; }
-div[role="radiogroup"] > label:hover { background: #1ABC9C !important; }
+[data-testid="stFileUploader"] * {
+    color: #1E3A5F !important;
+    font-weight: bold;
+}
+
+[data-testid="stFileUploaderDropzone"] {
+    background-color: #FDF2B0 !important;
+    border: 2px dashed #1E3A5F !important;
+}
 </style>
 """, unsafe_allow_html=True)
+
 
 # Injection HTML du header
 st.markdown("""
