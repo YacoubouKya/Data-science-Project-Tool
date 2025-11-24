@@ -87,6 +87,65 @@ div[role="radiogroup"] label:hover {
     color: yellow !important;
 }
 
+/********* MÉTRIQUES & PIPELINE (Modélisation/Évaluation) *********/
+/* JSON display pour les métriques */
+[data-testid="stJson"] {
+    background-color: #000000 !important;
+    border: 1px solid #FFD700 !important;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+[data-testid="stJson"] * {
+    color: #FFFFFF !important;
+    font-family: 'Courier New', monospace !important;
+}
+
+/* Code blocks pour le pipeline */
+code, pre {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #FFD700 !important;
+    border-radius: 5px;
+    padding: 10px !important;
+}
+
+/* Dataframes (métriques en tableau) */
+[data-testid="stDataFrame"] {
+    background-color: #000000 !important;
+}
+
+[data-testid="stDataFrame"] * {
+    color: #FFFFFF !important;
+}
+
+/* Tables */
+.stDataFrame table {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+.stDataFrame th {
+    background-color: #1E3A5F !important;
+    color: #FFD700 !important;
+    font-weight: bold;
+}
+
+.stDataFrame td {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+/* Expander pour les détails */
+[data-testid="stExpander"] {
+    background-color: #1E3A5F !important;
+    border: 1px solid #FFD700 !important;
+}
+
+[data-testid="stExpander"] * {
+    color: #FFFFFF !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
