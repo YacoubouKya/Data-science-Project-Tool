@@ -16,9 +16,10 @@ lightgbm>=4.0.0
 matplotlib>=3.7.0
 seaborn>=0.12.0
 
-# ===== PROFILING (OBLIGATOIRE) =====
-# ydata-profiling nécessite plusieurs dépendances
-ydata-profiling>=4.5.0
+# ===== PROFILING =====
+# ydata-profiling n'est PAS compatible Python 3.13
+# Utilisation d'un profiling manuel à la place
+# ydata-profiling>=4.5.0  # ❌ Incompatible Python 3.13
 
 # ===== STATISTIQUES =====
 statsmodels>=0.14.0
@@ -32,7 +33,7 @@ xlsxwriter>=3.1.0
 # Nécessaires pour ydata-profiling et compatibilité
 setuptools>=68.0.0
 Jinja2>=3.1.0
-htmlmin>=0.1.12
+minify-html>=0.18.0
 phik>=0.12.0
 requests>=2.31.0
 tqdm>=4.65.0
