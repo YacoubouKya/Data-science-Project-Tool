@@ -1,24 +1,7 @@
 # app.py
 import streamlit as st
 import pandas as pd
-import sys
-import os
-
-# Ajouter le dossier modules au path pour Streamlit Cloud
-current_dir = os.path.dirname(os.path.abspath(__file__))
-modules_path = os.path.join(current_dir, 'modules')
-if modules_path not in sys.path:
-    sys.path.insert(0, modules_path)
-if current_dir not in sys.path:
-    sys.path.insert(0, current_dir)
-
-# Imports des modules
-import data_loader
-import eda
-import preprocessing
-import modeling
-import evaluation
-import reporting
+import data_loader, eda, preprocessing, modeling, evaluation, reporting
 from sklearn.model_selection import train_test_split
 
 # ------------------------
@@ -54,22 +37,68 @@ p, span, label, div { color: #FFFFFF !important; font-family: 'Segoe UI', sans-s
 .stButton>button { background-color: #FFD700; color: #1E3A5F; border-radius: 10px; padding: 10px 20px; border: none; font-weight: bold; }
 .stButton>button:hover { background-color: #FFA500; color: white; }
 
-[data-testid="stFileUploader"] { background-color: #2C3E50 !important; border-radius: 10px; padding: 15px; border: 2px solid #FFD700; }
-[data-testid="stFileUploader"] label { color: #FFD700 !important; font-weight: bold; font-size: 16px; }
-[data-testid="stFileUploader"] section { background-color: #34495E !important; }
-[data-testid="stFileUploader"] section > div { color: #FFFFFF !important; }
-[data-testid="stFileUploader"] small { color: #FFFFFF !important; }
-[data-testid="stFileUploader"] [data-testid="stMarkdownContainer"] { color: #FFFFFF !important; }
+/* File Uploader - Fond noir avec texte blanc */
+[data-testid="stFileUploader"] { 
+    background-color: #1a1a1a !important; 
+    border-radius: 10px; 
+    padding: 15px; 
+    border: 2px solid #FFD700; 
+}
+[data-testid="stFileUploader"] label { 
+    color: #FFD700 !important; 
+    font-weight: bold; 
+}
+[data-testid="stFileUploader"] section { 
+    background-color: #1a1a1a !important; 
+}
+[data-testid="stFileUploader"] section > div { 
+    background-color: #1a1a1a !important;
+    color: #FFFFFF !important; 
+}
+[data-testid="stFileUploader"] small { 
+    color: #FFFFFF !important; 
+}
+[data-testid="stFileUploader"] button { 
+    background-color: #34495E !important;
+    color: #FFFFFF !important;
+    border: 1px solid #FFD700 !important;
+}
+[data-testid="stFileUploader"] [data-testid="stMarkdownContainer"] { 
+    color: #FFFFFF !important; 
+}
 
-/* Selectbox styling */
-.stSelectbox { background: transparent !important; }
-.stSelectbox label { color: #FFD700 !important; font-weight: bold; }
-.stSelectbox > div > div { background-color: #34495E !important; color: #FFFFFF !important; border: 1px solid #FFD700; border-radius: 8px; }
-.stSelectbox option { background-color: #34495E !important; color: #FFFFFF !important; }
+/* Selectbox - Fond sombre avec texte blanc */
+.stSelectbox { 
+    background: transparent !important; 
+}
+.stSelectbox label { 
+    color: #FFD700 !important; 
+    font-weight: bold; 
+}
+.stSelectbox > div > div { 
+    background-color: #1a1a1a !important; 
+    color: #FFFFFF !important; 
+    border: 1px solid #FFD700; 
+    border-radius: 8px; 
+}
+.stSelectbox [data-baseweb="select"] > div {
+    background-color: #1a1a1a !important;
+    color: #FFFFFF !important;
+}
 
 /* Radio buttons */
-div[role="radiogroup"] > label { background: #34495E !important; color: #FFD700 !important; padding: 8px 15px; border-radius: 8px; margin: 3px 0; cursor: pointer; }
-div[role="radiogroup"] > label:hover { background: #1ABC9C !important; color: #FFFFFF !important; }
+div[role="radiogroup"] > label { 
+    background: #34495E !important; 
+    color: #FFD700 !important; 
+    padding: 8px 15px; 
+    border-radius: 8px; 
+    margin: 3px 0; 
+    cursor: pointer; 
+}
+div[role="radiogroup"] > label:hover { 
+    background: #1ABC9C !important; 
+    color: #FFFFFF !important; 
+}
 </style>
 """, unsafe_allow_html=True)
 
