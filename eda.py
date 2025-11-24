@@ -6,51 +6,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from io import BytesIO
-import numpy as np
+from ydata_profiling import ProfileReport
 
 def generate_profile(df: pd.DataFrame):
     """
-    Génère un profiling manuel simple (ydata-profiling incompatible Python 3.13).
-    Retourne un dictionnaire avec les statistiques de base.
+    Génère un rapport de profiling avec ydata-profiling.
+    Nécessite Python 3.11 (configuré via runtime.txt).
     """
-    profile = {
-        'variables': {}
-    }
-    
-    for col in df.columns:
-        col_info = {
-            'type': str(df[col].dtype),
-            'count': int(df[col].count()),
-            'missing': int(df[col].isna().sum()),
-            'missing_pct': float(df[col].isna().sum() / len(df) * 100),
-            'unique': int(df[col].nunique()),
-        }
-        
-        # Statistiques pour colonnes numériques
-        if pd.api.types.is_numeric_dtype(df[col]):
-            col_info.update({
-                'mean': float(df[col].mean()) if df[col].notna().any() else None,
-                'std': float(df[col].std()) if df[col].notna().any() else None,
-                'min': float(df[col].min()) if df[col].notna().any() else None,
-                'max': float(df[col].max()) if df[col].notna().any() else None,
-                'zeros': int((df[col] == 0).sum()),
-                'infinite': int(np.isinf(df[col]).sum()) if df[col].notna().any() else 0,
-            })
-        
-        profile['variables'][col] = col_info
-    
-    # Créer un objet simple avec méthode get_description
-    class SimpleProfile:
-        def __init__(self, data):
-            self.data = data
-        
-        def get_description(self):
-            return self.data
-        
-        def to_file(self, filename):
-            st.warning("⚠️ Export HTML non disponible (ydata-profiling incompatible Python 3.13)")
-    
-    return SimpleProfile(profile)
+    profile = ProfileReport(df, title="Profiling EDA", minimal=True)
+    return profile
 
 def run_eda(df: pd.DataFrame):
     st.subheader("Aperçu général")
@@ -76,8 +40,22 @@ def run_eda(df: pd.DataFrame):
             st.session_state.show_report = True
 
     if st.session_state.report_generated:
-        st.info("ℹ️ Profiling manuel généré (ydata-profiling incompatible Python 3.13)")
-        st.markdown("**Analyse des colonnes disponible dans la section Prétraitement**")
+        st.success("✅ Rapport de profiling généré.")
+        col1, col2, col3 = st.columns([1,1,1])
+        with col1:
+            if st.button("👁️ Afficher le rapport"):
+                st.session_state.show_report = True
+        with col2:
+            if st.button("🙈 Masquer le rapport"):
+                st.session_state.show_report = False
+        with col3:
+            with open("profiling_report.html", "rb") as f:
+                st.download_button(label="💾 Télécharger le rapport HTML", data=f, file_name="profiling_report.html", mime="text/html")
+
+        if st.session_state.show_report:
+            with open("profiling_report.html", "r", encoding="utf-8") as f:
+                report_html = f.read()
+            st.components.v1.html(report_html, height=800, scrolling=True)
 
     # --------------------------
     # Histogrammes : sélection interactive (évite boucle coûteuse par défaut)
